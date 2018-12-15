@@ -1,5 +1,13 @@
 package jp.ac.uryukyu.ie.e185711;
 
+/**
+ *キャラの生存判定クラス
+ * String name; //敵の名前
+ * int hitPoint; //敵のHP
+ * int attack; //敵の攻撃力
+ * boolean dead; //敵の生死状態。true=死亡。
+ *Created by shoki on 2018/11
+ */
 public class LivingThing {
     private String name;
     private int hitPoint;
@@ -38,6 +46,11 @@ public class LivingThing {
         return attack;
     }
 
+    /**
+     * 相手が生存している間は攻撃し続けるメソッド。
+     * deadで生死判定をする。
+     * @param damage 受けたダメージ。
+     */
     public void attack(LivingThing opponent) {
         if (dead == false) {
             int damage = (int) (Math.random() * attack);
@@ -47,7 +60,11 @@ public class LivingThing {
             System.out.printf("%sは死んでいるよ。\n", name);
         }
     }
-
+    /**
+     * 自身へ攻撃されたときのダメージ処理をするメソッド。
+     * 指定されたダメージを hitPoint から引き、死亡判定を行う。
+     * @param damage 受けたダメージ
+     */
     public void wounded(int damage) {
         hitPoint -= damage;
         if (hitPoint < 0) {
